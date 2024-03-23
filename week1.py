@@ -14,14 +14,22 @@
 # return 'modifystring', [a,b,c,d]
 
 
+
+import re
+from collections import Counter
+
 def editor(fname):
     #YOUR CODE STARTS HERE
-
-
-
-
-
-
+    with open(fname,'r') as file:
+        content = file.read().strip()
+        if content.isdigit():
+            return 'first 10 digit is:' + content[:10]
+        else:
+            modified_string = content.lower().replace('\n', '')
+            words = re.findall(r'\w+', modified_string)
+            word_counts = Counter(words)
+            top5_words = [word for word, count in word_counts.most_common(5)]
+            return modified_string, top5_words
 
 
 
